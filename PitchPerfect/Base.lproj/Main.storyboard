@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,15 +15,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-p6-jJf">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="155" id="e9S-vI-tny"/>
-                                    <constraint firstAttribute="width" constant="155" id="jJw-ql-a4v"/>
-                                </constraints>
-                                <state key="normal" image="RecordButton"/>
+                                <state key="normal" image="Record"/>
                                 <connections>
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sty-vL-XVq"/>
                                 </connections>
@@ -34,8 +29,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-lV-e6D">
+                                <frame key="frameInset" minX="83" minY="398" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-3L-nBW">
-                                <state key="normal" backgroundImage="Stop"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Cxa-bD-hwD"/>
+                                    <constraint firstAttribute="width" constant="64" id="rI9-vf-rsp"/>
+                                </constraints>
+                                <state key="normal" image="Stop"/>
                                 <connections>
                                     <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jyz-el-5Oe"/>
                                     <segue destination="eT9-ui-nBw" kind="show" id="dzg-XZ-vpQ"/>
@@ -45,13 +48,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gk5-n0-av7" firstAttribute="top" secondItem="lWI-p6-jJf" secondAttribute="bottom" constant="8" id="4Fl-kJ-xSI"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="centerX" secondItem="gk5-n0-av7" secondAttribute="centerX" id="E9p-vi-6m7"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="width" secondItem="lWI-p6-jJf" secondAttribute="width" multiplier="0.5" id="F0d-cx-76n"/>
+                            <constraint firstItem="e7M-3L-nBW" firstAttribute="top" secondItem="gk5-n0-av7" secondAttribute="bottom" constant="8" id="bqa-mb-qmh"/>
+                            <constraint firstItem="e7M-3L-nBW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cx7-V8-zwf"/>
                             <constraint firstItem="gk5-n0-av7" firstAttribute="centerX" secondItem="lWI-p6-jJf" secondAttribute="centerX" id="edS-c9-n1X"/>
                             <constraint firstItem="lWI-p6-jJf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j7n-R6-vB5"/>
                             <constraint firstItem="lWI-p6-jJf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k0G-FK-zRI"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="top" secondItem="gk5-n0-av7" secondAttribute="bottom" constant="8" id="nQh-l5-AT2"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="height" secondItem="lWI-p6-jJf" secondAttribute="height" multiplier="0.5" id="qU1-F8-OGQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dyK-RF-9Gz"/>
@@ -74,7 +75,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jyT-2M-WQK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3cz-Kn-YUw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.8010283672057632" green="0.97404868841860581" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -103,7 +104,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="RecordButton" width="155" height="155"/>
+        <image name="Record" width="155" height="155"/>
         <image name="Stop" width="155" height="155"/>
     </resources>
 </document>
