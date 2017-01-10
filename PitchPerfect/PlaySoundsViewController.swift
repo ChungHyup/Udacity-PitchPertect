@@ -16,6 +16,7 @@ class PlaySoundsViewController: UIViewController {
     var audioEngine:AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
+    var sliderTimer: Timer!
     
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
@@ -28,6 +29,7 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var echoButton: UIButton!
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var audioSlider: UISlider!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +57,26 @@ class PlaySoundsViewController: UIViewController {
             playSound(reverb: true)
         }
         configureUI(.playing)
-
+        
+        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioTime), userInfo: nil, repeats:true)
+        RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
     }
+    
+    @IBAction func changeAudioTime(_ sender: AnyObject) {
+        
+    }
+    
+    //
+    func updateAudioTime(){
+        let nodeTime:AVAudioTime = self.audioPlayerNode.lastRenderTime!
+        let playerTime:AVAudioTime = audioPlayerNode.playerTime(forNodeTime: nodeTime)!        
+        let seconds:TimeInterval = Double(playerTime.sampleTime) / Double(playerTime.sampleRate)
+        self.audioSlider.value = Float(seconds)
+    }
+    
+    
 }

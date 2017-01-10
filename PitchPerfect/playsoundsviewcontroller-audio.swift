@@ -61,6 +61,9 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         }
         audioEngine.attach(changeRatePitchNode)
         
+        //set playSlider's maximumValue to audio length in second (audioFile length / bits per sec)
+        self.audioSlider.maximumValue = Float(Double(audioFile.length)/Double(audioFile.fileFormat.sampleRate))
+        
         // node for echo
         let echoNode = AVAudioUnitDistortion()
         echoNode.loadFactoryPreset(.multiEcho1)
@@ -118,6 +121,11 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()
+        }
+        
+        if let sliderTimer = sliderTimer{
+            sliderTimer.invalidate()
+            audioSlider.value = audioSlider.maximumValue
         }
         
         if let stopTimer = stopTimer {

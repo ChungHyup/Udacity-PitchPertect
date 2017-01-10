@@ -30,10 +30,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-lV-e6D">
-                                <frame key="frameInset" minX="83" minY="398" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-3L-nBW">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Cxa-bD-hwD"/>
@@ -135,6 +131,14 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tV4-kc-Foh">
                                         <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oRW-J6-hue">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Ff7-G8-WmV"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="changeAudioTime:" destination="eT9-ui-nBw" eventType="valueChanged" id="iCu-Zg-6fQ"/>
+                                                </connections>
+                                            </slider>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6T-ec-fiZ" userLabel="Stop Button">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="KRo-fr-v0K"/>
@@ -146,6 +150,9 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="oRW-J6-hue" firstAttribute="width" secondItem="tV4-kc-Foh" secondAttribute="width" id="hFE-t2-nuF"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -159,6 +166,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioSlider" destination="oRW-J6-hue" id="xTN-5o-b5D"/>
                         <outlet property="chipmunkButton" destination="abv-nQ-W5y" id="GEK-SD-1DM"/>
                         <outlet property="echoButton" destination="YM4-6u-R0f" id="9GQ-dn-u6O"/>
                         <outlet property="rabbitButton" destination="oXx-7I-bqF" id="pLE-SS-Xb4"/>
