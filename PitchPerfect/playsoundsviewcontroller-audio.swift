@@ -62,7 +62,8 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         audioEngine.attach(changeRatePitchNode)
         
         //set playSlider's maximumValue to audio length in second (audioFile length / bits per sec)
-        self.audioSlider.maximumValue = Float(Double(audioFile.length)/Double(audioFile.fileFormat.sampleRate))
+        audioDuration = Float(Double(audioFile.length)/Double(audioFile.fileFormat.sampleRate))
+        self.audioSlider.maximumValue = audioDuration
         
         // node for echo
         let echoNode = AVAudioUnitDistortion()

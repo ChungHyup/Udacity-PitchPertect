@@ -16,7 +16,13 @@ class PlaySoundsViewController: UIViewController {
     var audioEngine:AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
+    //values for customizing
     var sliderTimer: Timer!
+    var restartPoint: AVAudioFramePosition!
+    var audioDuration: Float!
+    var audioPlayerTime: AVAudioTime!
+    var isPaused = false
+    var currentButtonType:ButtonType!
     
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
@@ -39,6 +45,7 @@ class PlaySoundsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureUI(.notPlaying)
+        audioSlider.isContinuous = false
     }
     
     @IBAction func playSoundForButton(_ sender: UIButton) {
@@ -58,24 +65,59 @@ class PlaySoundsViewController: UIViewController {
         }
         configureUI(.playing)
         
-        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioTime), userInfo: nil, repeats:true)
-        RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+        addSliderTimer()
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
     }
     
+    @IBAction func pauseAudio(_ sender: AnyObject) {
+        audioPlayerTime = getPlayerTime()
+        audioPlayerNode.pause()
+        sliderTimer.invalidate()
+        stopTimer.invalidate()
+        self.isPaused = true
+    }
+    
     @IBAction func changeAudioTime(_ sender: AnyObject) {
+        if isPaused {
+            restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
+            print(audioFile.length)
+            print(restartPoint)
+            
+            let length = Float(audioDuration!) - audioSlider.value
+            let framestoplay = AVAudioFrameCount(Float(audioPlayerTime.sampleRate) * length)
+            audioPlayerNode.stop()
+            if framestoplay > 1000 {
+                audioPlayerNode.scheduleSegment(audioFile, startingFrame: restartPoint, frameCount: framestoplay, at: nil,completionHandler: nil)
+            }
+            
+            self.isPaused = false
+            addSliderTimer()
+            audioPlayerNode.play()
+        }
+    }
+    
+    func playSoundByButtonType(){
         
+    }
+    func addSliderTimer(){
+        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioTime), userInfo: nil, repeats:true)
+        RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     //
     func updateAudioTime(){
-        let nodeTime:AVAudioTime = self.audioPlayerNode.lastRenderTime!
-        let playerTime:AVAudioTime = audioPlayerNode.playerTime(forNodeTime: nodeTime)!        
+        let playerTime = getPlayerTime()
         let seconds:TimeInterval = Double(playerTime.sampleTime) / Double(playerTime.sampleRate)
         self.audioSlider.value = Float(seconds)
+    }
+    
+    func getPlayerTime()->AVAudioTime{
+        let nodeTime:AVAudioTime = self.audioPlayerNode.lastRenderTime!
+        let playerTime:AVAudioTime = audioPlayerNode.playerTime(forNodeTime: nodeTime)!
+        return playerTime
     }
     
     

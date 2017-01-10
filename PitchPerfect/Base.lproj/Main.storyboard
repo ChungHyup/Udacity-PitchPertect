@@ -136,7 +136,8 @@
                                                     <constraint firstAttribute="height" constant="40" id="Ff7-G8-WmV"/>
                                                 </constraints>
                                                 <connections>
-                                                    <action selector="changeAudioTime:" destination="eT9-ui-nBw" eventType="valueChanged" id="iCu-Zg-6fQ"/>
+                                                    <action selector="changeAudioTime:" destination="eT9-ui-nBw" eventType="valueChanged" id="Zyu-K0-zOp"/>
+                                                    <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchDown" id="AGv-cR-9ad"/>
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6T-ec-fiZ" userLabel="Stop Button">
