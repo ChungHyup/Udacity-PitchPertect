@@ -23,6 +23,7 @@ class PlaySoundsViewController: UIViewController {
     var audioPlayerTime: AVAudioTime!
     var isPaused = false
     var currentButtonType:ButtonType!
+    var changeRatePitchNode: AVAudioUnitTimePitch!
     
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
@@ -70,11 +71,13 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
+        restartPoint = nil
     }
     
     @IBAction func pauseAudio(_ sender: AnyObject) {
         audioPlayerTime = getPlayerTime()
-        audioPlayerNode.pause()
+        //audioPlayerNode.pause()
+        audioPlayerNode.stop()
         sliderTimer.invalidate()
         stopTimer.invalidate()
         self.isPaused = true
@@ -83,19 +86,19 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func changeAudioTime(_ sender: AnyObject) {
         if isPaused {
             restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
-            print(audioFile.length)
-            print(restartPoint)
             
             let length = Float(audioDuration!) - audioSlider.value
             let framestoplay = AVAudioFrameCount(Float(audioPlayerTime.sampleRate) * length)
-            audioPlayerNode.stop()
+            //audioPlayerNode.stop()
             if framestoplay > 1000 {
                 audioPlayerNode.scheduleSegment(audioFile, startingFrame: restartPoint, frameCount: framestoplay, at: nil,completionHandler: nil)
             }
             
             self.isPaused = false
             addSliderTimer()
+            scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
             audioPlayerNode.play()
+            
         }
     }
     
@@ -110,7 +113,13 @@ class PlaySoundsViewController: UIViewController {
     //
     func updateAudioTime(){
         let playerTime = getPlayerTime()
-        let seconds:TimeInterval = Double(playerTime.sampleTime) / Double(playerTime.sampleRate)
+        var seconds:TimeInterval
+        if (restartPoint != nil) {
+            seconds = (Double(restartPoint)+Double(playerTime.sampleTime)) / Double(playerTime.sampleRate)
+        }else{
+            seconds = Double(playerTime.sampleTime) / Double(playerTime.sampleRate)
+        }
+        
         self.audioSlider.value = Float(seconds)
     }
     
