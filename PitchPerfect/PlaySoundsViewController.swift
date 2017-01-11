@@ -24,8 +24,15 @@ class PlaySoundsViewController: UIViewController {
     var currentButtonType:ButtonType!
     var changeRatePitchNode: AVAudioUnitTimePitch!
     
+    var isPaused: Bool = false
+    var buttonPaused: Bool = false
+    
     enum ButtonType: Int {
         case slow = 0, fast, chipmunk, vader, echo, reverb
+    }
+    
+    enum PauseType: Int {
+        case slider = 0, button
     }
     
     @IBOutlet weak var snailButton: UIButton!
@@ -36,6 +43,8 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var audioSlider: UISlider!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,14 +82,26 @@ class PlaySoundsViewController: UIViewController {
         restartPoint = nil
     }
     
-    @IBAction func pauseAudio(_ sender: AnyObject) {
-        audioPlayerTime = getPlayerTime()
-        audioPlayerNode.stop()
-        sliderTimer.invalidate()
-        stopTimer.invalidate()
+    @IBAction func pauseAudio(_ sender: AnyObject) {        
+        if !isPaused{
+            audioPlayerTime = getPlayerTime()
+            audioPlayerNode.stop()
+            sliderTimer.invalidate()
+            stopTimer.invalidate()
+            isPaused = true
+            if(PauseType(rawValue: sender.tag) == .button){
+                buttonPaused = true
+            }
+        }
     }
     
     @IBAction func changeAudioTime(_ sender: AnyObject) {
+        if !buttonPaused{
+            restartAudio(sender)
+        }
+    }
+    
+    @IBAction func restartAudio(_ sender: AnyObject) {
         restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
         
         let length = Float(audioDuration!) - audioSlider.value
@@ -91,6 +112,8 @@ class PlaySoundsViewController: UIViewController {
         
         addSliderTimer()
         scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
+        isPaused = false
+        buttonPaused = false
         audioPlayerNode.play()
     }
     
