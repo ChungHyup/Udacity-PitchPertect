@@ -140,16 +140,34 @@
                                                     <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchDown" id="AGv-cR-9ad"/>
                                                 </connections>
                                             </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6T-ec-fiZ" userLabel="Stop Button">
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="64" id="KRo-fr-v0K"/>
-                                                    <constraint firstAttribute="width" constant="64" id="fVV-va-rdL"/>
-                                                </constraints>
-                                                <state key="normal" image="Stop"/>
-                                                <connections>
-                                                    <action selector="stopButtonPressed:" destination="eT9-ui-nBw" eventType="touchUpInside" id="NjH-ZZ-Xtb"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZNF-eE-otj">
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm6-7l-40c" userLabel="Play Button">
+                                                        <color key="backgroundColor" red="0.10196078431372549" green="0.76470588235294112" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="play"/>
+                                                        <connections>
+                                                            <action selector="restartAudio:" destination="eT9-ui-nBw" eventType="touchUpInside" id="fhb-Y7-CgT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-7s-RkJ" userLabel="Pause Button">
+                                                        <color key="backgroundColor" red="0.1019607843" green="0.76470588240000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="pause"/>
+                                                        <connections>
+                                                            <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchUpInside" id="cYL-yb-fmE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6T-ec-fiZ" userLabel="Stop Button">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="64" id="KRo-fr-v0K"/>
+                                                            <constraint firstAttribute="width" constant="64" id="fVV-va-rdL"/>
+                                                        </constraints>
+                                                        <state key="normal" image="Stop"/>
+                                                        <connections>
+                                                            <action selector="stopButtonPressed:" destination="eT9-ui-nBw" eventType="touchUpInside" id="NjH-ZZ-Xtb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="oRW-J6-hue" firstAttribute="width" secondItem="tV4-kc-Foh" secondAttribute="width" id="hFE-t2-nuF"/>
@@ -170,6 +188,8 @@
                         <outlet property="audioSlider" destination="oRW-J6-hue" id="xTN-5o-b5D"/>
                         <outlet property="chipmunkButton" destination="abv-nQ-W5y" id="GEK-SD-1DM"/>
                         <outlet property="echoButton" destination="YM4-6u-R0f" id="9GQ-dn-u6O"/>
+                        <outlet property="pauseButton" destination="dXh-7s-RkJ" id="FXy-z2-c8Z"/>
+                        <outlet property="playButton" destination="Sm6-7l-40c" id="LXJ-t4-HA9"/>
                         <outlet property="rabbitButton" destination="oXx-7I-bqF" id="pLE-SS-Xb4"/>
                         <outlet property="reverbButton" destination="YyH-hm-TDy" id="4vN-DF-ehL"/>
                         <outlet property="snailButton" destination="dqU-xm-55r" id="Ufg-WC-yU1"/>
