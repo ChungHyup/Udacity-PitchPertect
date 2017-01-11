@@ -90,7 +90,14 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         // schedule to play and start the engine!
         audioPlayerNode.stop()
         scheduleStopTimer(rate: rate)
-      
+        
+        do {
+            try audioEngine.start()
+        } catch {
+            showAlert(Alerts.AudioEngineError, message: String(describing: error))
+            return
+        }
+        
         // play the recording!
         audioPlayerNode.play()
     }
@@ -124,16 +131,12 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
                 self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
                 RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
             }
-            do {
-                try audioEngine.start()
-            } catch {
-                showAlert(Alerts.AudioEngineError, message: String(describing: error))
-                return
-            }
+            
         }
     }
     func stopAudio() {
         self.restartPoint = nil
+        self.changeRatePitchNode = nil
         
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()

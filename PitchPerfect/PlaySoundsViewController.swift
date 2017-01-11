@@ -102,15 +102,11 @@ class PlaySoundsViewController: UIViewController {
         }
     }
     
-    func playSoundByButtonType(){
-        
-    }
     func addSliderTimer(){
         sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioTime), userInfo: nil, repeats:true)
         RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
-    //
     func updateAudioTime(){
         let playerTime = getPlayerTime()
         var seconds:TimeInterval
