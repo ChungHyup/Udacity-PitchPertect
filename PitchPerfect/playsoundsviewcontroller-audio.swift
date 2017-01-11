@@ -96,8 +96,14 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     }
     func scheduleStopTimer(rate: Float? = nil, isRestart: Bool? = false){
         if isRestart! {
+            var delayInSeconds: Double = 0
             let length = self.audioFile.length - self.restartPoint!
-            let delayInSeconds = Double(length)/audioPlayerTime.sampleRate
+            if let rate = rate {
+                delayInSeconds = Double(length)/audioPlayerTime.sampleRate/Double(rate)
+            }else{
+                delayInSeconds = Double(length)/audioPlayerTime.sampleRate
+
+            }
             self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
             RunLoop.main.add(self.stopTimer!, forMode: RunLoopMode.defaultRunLoopMode)
         }else{
