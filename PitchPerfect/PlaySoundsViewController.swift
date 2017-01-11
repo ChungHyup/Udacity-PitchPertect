@@ -21,7 +21,6 @@ class PlaySoundsViewController: UIViewController {
     var restartPoint: AVAudioFramePosition!
     var audioDuration: Float!
     var audioPlayerTime: AVAudioTime!
-    var isPaused = false
     var currentButtonType:ButtonType!
     var changeRatePitchNode: AVAudioUnitTimePitch!
     
@@ -37,7 +36,7 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var audioSlider: UISlider!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
@@ -76,30 +75,23 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func pauseAudio(_ sender: AnyObject) {
         audioPlayerTime = getPlayerTime()
-        //audioPlayerNode.pause()
         audioPlayerNode.stop()
         sliderTimer.invalidate()
         stopTimer.invalidate()
-        self.isPaused = true
     }
     
     @IBAction func changeAudioTime(_ sender: AnyObject) {
-        if isPaused {
-            restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
-            
-            let length = Float(audioDuration!) - audioSlider.value
-            let framestoplay = AVAudioFrameCount(Float(audioPlayerTime.sampleRate) * length)
-            //audioPlayerNode.stop()
-            if framestoplay > 1000 {
-                audioPlayerNode.scheduleSegment(audioFile, startingFrame: restartPoint, frameCount: framestoplay, at: nil,completionHandler: nil)
-            }
-            
-            self.isPaused = false
-            addSliderTimer()
-            scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
-            audioPlayerNode.play()
-            
+        restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
+        
+        let length = Float(audioDuration!) - audioSlider.value
+        let framestoplay = AVAudioFrameCount(Float(audioPlayerTime.sampleRate) * length)
+        if framestoplay > 1000 {
+            audioPlayerNode.scheduleSegment(audioFile, startingFrame: restartPoint, frameCount: framestoplay, at: nil,completionHandler: nil)
         }
+        
+        addSliderTimer()
+        scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
+        audioPlayerNode.play()
     }
     
     func addSliderTimer(){
