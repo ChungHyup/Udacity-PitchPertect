@@ -170,13 +170,19 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         switch(playState) {
         case .playing:
             setPlayButtonsEnabled(false)
-            stopButton.isEnabled = true
-            audioSlider.isEnabled = true
+            setAudioNavigationEnabled(true)
+
         case .notPlaying:
             setPlayButtonsEnabled(true)
-            stopButton.isEnabled = false
-            audioSlider.isEnabled = false
+            setAudioNavigationEnabled(false)
         }
+    }
+    
+    func setAudioNavigationEnabled(_ enabled: Bool){
+        stopButton.isEnabled = enabled
+        audioSlider.isEnabled = enabled
+        playButton.isEnabled = enabled
+        pauseButton.isEnabled = enabled
     }
     
     func setPlayButtonsEnabled(_ enabled: Bool) {
