@@ -103,8 +103,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         audioPlayerNode.play()
         
         //hidden playButton
-        playButton.isHidden = true
-        pauseButton.isHidden = false
+        setPlayButtonHidden(true)
     }
     func scheduleStopTimer(rate: Float? = nil, isRestart: Bool? = false){
         var delayInSeconds: Double = 0
@@ -159,6 +158,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
             currentTimeTimer.invalidate()
         }
         
+        setPlayButtonHidden(false)
         configureUI(.notPlaying)
         
         if let audioEngine = audioEngine {
