@@ -62,6 +62,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
         audioRecorder.stop()
         durationTimer.invalidate()
+        durationLabel.text = "00:00"
         
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)

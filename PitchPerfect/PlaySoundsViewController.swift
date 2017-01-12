@@ -57,7 +57,6 @@ class PlaySoundsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureUI(.notPlaying)
-        audioSlider.isContinuous = false
     }
     
     @IBAction func playSoundForButton(_ sender: UIButton) {
@@ -99,11 +98,14 @@ class PlaySoundsViewController: UIViewController {
         }
     }
     
-    @IBAction func changeAudioTime(_ sender: AnyObject) {
+    @IBAction func finishDragInSlider(_ sender: AnyObject) {
         //button으로 pause가 되지 않았을 시 옮긴 위치에서 오디오 재생
         if !buttonPaused{
             restartAudio(sender)
         }
+    }
+    @IBAction func changeValueInSlider(_ sender: AnyObject) {
+        updateCurrentTime()
     }
     
     //음악을 다시 시작 할 위치, slider, stoptimer 세팅
@@ -123,6 +125,9 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
+    @IBAction func testDrag(_ sender: AnyObject) {
+        print("1")
+    }
     //Timer for slider
     func setTimer(){
         sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioSlider), userInfo: nil, repeats:true)

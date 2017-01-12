@@ -143,7 +143,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="Ff7-G8-WmV"/>
                                                 </constraints>
                                                 <connections>
-                                                    <action selector="changeAudioTime:" destination="eT9-ui-nBw" eventType="valueChanged" id="Zyu-K0-zOp"/>
+                                                    <action selector="changeValueInSlider:" destination="eT9-ui-nBw" eventType="valueChanged" id="5rg-6C-hiu"/>
+                                                    <action selector="finishDragInSlider:" destination="eT9-ui-nBw" eventType="touchUpOutside" id="D5A-ZN-6go"/>
+                                                    <action selector="finishDragInSlider:" destination="eT9-ui-nBw" eventType="touchUpInside" id="dGH-00-0hd"/>
                                                     <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchDown" id="AGv-cR-9ad"/>
                                                 </connections>
                                             </slider>
