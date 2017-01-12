@@ -52,6 +52,7 @@ class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
+        pauseButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +87,8 @@ class PlaySoundsViewController: UIViewController {
     //slider를 클릭할때, pauseButton 버튼을 클릭할때
     @IBAction func pauseAudio(_ sender: AnyObject) {        
         if !isPaused{
+            pauseButton.isHidden = true
+            playButton.isHidden = false
             audioPlayerTime = getPlayerTime()
             audioPlayerNode.stop()
             sliderTimer.invalidate()
@@ -122,6 +125,8 @@ class PlaySoundsViewController: UIViewController {
         scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
         isPaused = false
         buttonPaused = false
+        pauseButton.isHidden = false
+        playButton.isHidden = true
         audioPlayerNode.play()
     }
     

@@ -101,6 +101,10 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         
         // play the recording!
         audioPlayerNode.play()
+        
+        //hidden playButton
+        playButton.isHidden = true
+        pauseButton.isHidden = false
     }
     func scheduleStopTimer(rate: Float? = nil, isRestart: Bool? = false){
         var delayInSeconds: Double = 0
