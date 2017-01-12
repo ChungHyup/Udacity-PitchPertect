@@ -135,6 +135,8 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     func stopAudio() {
         self.restartPoint = nil
         self.changeRatePitchNode = nil
+        self.durationLabel.text = "/00:00"
+        self.currentTimeLabel.text = "00:00"
         
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()
