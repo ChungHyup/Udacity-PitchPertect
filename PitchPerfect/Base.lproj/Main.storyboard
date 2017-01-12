@@ -147,11 +147,20 @@
                                                     <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchDown" id="AGv-cR-9ad"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00/00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihm-ss-aXE" userLabel="CurrentTimeLabel">
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7V-Nb-wGx">
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihm-ss-aXE" userLabel="CurrentTimeLabel">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d15-Sj-XJH" userLabel="DurationLabel">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZNF-eE-otj">
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm6-7l-40c" userLabel="Play Button">
@@ -182,10 +191,17 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="oRW-J6-hue" firstAttribute="centerX" secondItem="tV4-kc-Foh" secondAttribute="centerX" id="9Zd-I3-DdF"/>
                                             <constraint firstItem="oRW-J6-hue" firstAttribute="width" secondItem="tV4-kc-Foh" secondAttribute="width" id="hFE-t2-nuF"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="RWY-4G-bFR" firstAttribute="top" secondItem="q7b-Jg-dmY" secondAttribute="top" id="80g-iz-836"/>
+                                    <constraint firstAttribute="trailing" secondItem="RWY-4G-bFR" secondAttribute="trailing" id="DEQ-Y2-XSK"/>
+                                    <constraint firstAttribute="bottom" secondItem="RWY-4G-bFR" secondAttribute="bottom" constant="124" id="RlU-Mf-crx"/>
+                                    <constraint firstItem="RWY-4G-bFR" firstAttribute="leading" secondItem="q7b-Jg-dmY" secondAttribute="leading" id="sek-3W-BXI"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -200,6 +216,7 @@
                         <outlet property="audioSlider" destination="oRW-J6-hue" id="xTN-5o-b5D"/>
                         <outlet property="chipmunkButton" destination="abv-nQ-W5y" id="GEK-SD-1DM"/>
                         <outlet property="currentTimeLabel" destination="ihm-ss-aXE" id="gZF-CP-esZ"/>
+                        <outlet property="durationLabel" destination="d15-Sj-XJH" id="QZa-Pt-pzB"/>
                         <outlet property="echoButton" destination="YM4-6u-R0f" id="9GQ-dn-u6O"/>
                         <outlet property="pauseButton" destination="dXh-7s-RkJ" id="FXy-z2-c8Z"/>
                         <outlet property="playButton" destination="Sm6-7l-40c" id="LXJ-t4-HA9"/>

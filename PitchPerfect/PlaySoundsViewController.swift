@@ -18,6 +18,7 @@ class PlaySoundsViewController: UIViewController {
     var stopTimer: Timer!
     //values for customizing
     var sliderTimer: Timer!
+    var currentTimeTimer: Timer!
     var restartPoint: AVAudioFramePosition!
     var audioDuration: Float!
     var audioPlayerTime: AVAudioTime!
@@ -45,7 +46,9 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     
+    @IBOutlet weak var durationLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
@@ -74,20 +77,21 @@ class PlaySoundsViewController: UIViewController {
         }
         configureUI(.playing)
         
-        addSliderTimer()
+        setTimer()
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
         restartPoint = nil
     }
-    
+    //slider를 클릭할때, pauseButton 버튼을 클릭할때
     @IBAction func pauseAudio(_ sender: AnyObject) {        
         if !isPaused{
             audioPlayerTime = getPlayerTime()
             audioPlayerNode.stop()
             sliderTimer.invalidate()
             stopTimer.invalidate()
+            currentTimeTimer.invalidate()
             isPaused = true
             if(PauseType(rawValue: sender.tag) == .button){
                 buttonPaused = true
@@ -96,11 +100,13 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func changeAudioTime(_ sender: AnyObject) {
+        //button으로 pause가 되지 않았을 시 옮긴 위치에서 오디오 재생
         if !buttonPaused{
             restartAudio(sender)
         }
     }
     
+    //음악을 다시 시작 할 위치, slider, stoptimer 세팅
     @IBAction func restartAudio(_ sender: AnyObject) {
         restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
         
@@ -110,25 +116,34 @@ class PlaySoundsViewController: UIViewController {
             audioPlayerNode.scheduleSegment(audioFile, startingFrame: restartPoint, frameCount: framestoplay, at: nil,completionHandler: nil)
         }
         
-        addSliderTimer()
+        setTimer()
         scheduleStopTimer(rate: changeRatePitchNode.rate, isRestart: true)
         isPaused = false
         buttonPaused = false
         audioPlayerNode.play()
     }
     
-    func addSliderTimer(){
-        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioTime), userInfo: nil, repeats:true)
+    //Timer for slider
+    func setTimer(){
+        sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioSlider), userInfo: nil, repeats:true)
+        currentTimeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(PlaySoundsViewController.updateCurrentTime), userInfo: nil, repeats:true)
         RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
-    func updateAudioTime(){
+    func updateCurrentTime(){
+        let playerTime = audioSlider.value
+        let currentTimeInSec = Int(round(playerTime/changeRatePitchNode.rate))
+        currentTimeLabel.text = String(format:"%.2d:%.2d",currentTimeInSec/60, currentTimeInSec%60)
+        
+    }
+    //오디오 재생시간 업데이트
+    func updateAudioSlider(){
         let playerTime = getPlayerTime()
         var seconds:TimeInterval
         if (restartPoint != nil) {
-            seconds = (Double(restartPoint)+Double(playerTime.sampleTime)) / Double(playerTime.sampleRate)
+            seconds = (Double(restartPoint)+Double(playerTime.sampleTime)) / playerTime.sampleRate
         }else{
-            seconds = Double(playerTime.sampleTime) / Double(playerTime.sampleRate)
+            seconds = Double(playerTime.sampleTime) / playerTime.sampleRate
         }
         
         self.audioSlider.value = Float(seconds)
