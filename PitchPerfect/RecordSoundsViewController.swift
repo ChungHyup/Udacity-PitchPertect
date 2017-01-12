@@ -12,13 +12,17 @@ import AVFoundation
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     var audioRecorder: AVAudioRecorder!
+    var durationTimer: Timer!
+    
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var durationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         stopRecordingButton.isEnabled = false;
+        durationLabel.isEnabled = false;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +34,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         print("record button was pressed")
         recordingLabel.text = "Recording in Progress"
         stopRecordingButton.isEnabled = true
+        durationLabel.isEnabled = true
         recordButton.isEnabled = false
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
@@ -45,6 +50,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
+        //
+        durationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RecordSoundsViewController.updateDurationLaber), userInfo: nil, repeats:true)
     }
 
     @IBAction func stopRecording(_ sender: AnyObject) {
@@ -54,9 +61,15 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordingLabel.text = "Tap to record"
         
         audioRecorder.stop()
+        durationTimer.invalidate()
         
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
+    }
+    
+    func updateDurationLaber(){
+        let currentSeconds: Int = Int(audioRecorder.currentTime)
+        self.durationLabel.text = String(format:"%.2d:%.2d", currentSeconds/60, currentSeconds%60)
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {

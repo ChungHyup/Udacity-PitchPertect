@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,43 +17,49 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-p6-jJf">
-                                <state key="normal" image="Record"/>
-                                <connections>
-                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sty-vL-XVq"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-n0-av7">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-3L-nBW">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="Cxa-bD-hwD"/>
-                                    <constraint firstAttribute="width" constant="64" id="rI9-vf-rsp"/>
-                                </constraints>
-                                <state key="normal" image="Stop"/>
-                                <connections>
-                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jyz-el-5Oe"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3v4-w7-b85">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-p6-jJf">
+                                        <state key="normal" image="Record"/>
+                                        <connections>
+                                            <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sty-vL-XVq"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-n0-av7">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-3L-nBW">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="Cxa-bD-hwD"/>
+                                            <constraint firstAttribute="width" constant="64" id="rI9-vf-rsp"/>
+                                        </constraints>
+                                        <state key="normal" image="Stop"/>
+                                        <connections>
+                                            <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jyz-el-5Oe"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qv-om-6JD" userLabel="DurationLabel">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gk5-n0-av7" firstAttribute="top" secondItem="lWI-p6-jJf" secondAttribute="bottom" constant="8" id="4Fl-kJ-xSI"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="top" secondItem="gk5-n0-av7" secondAttribute="bottom" constant="8" id="bqa-mb-qmh"/>
-                            <constraint firstItem="e7M-3L-nBW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cx7-V8-zwf"/>
-                            <constraint firstItem="gk5-n0-av7" firstAttribute="centerX" secondItem="lWI-p6-jJf" secondAttribute="centerX" id="edS-c9-n1X"/>
-                            <constraint firstItem="lWI-p6-jJf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j7n-R6-vB5"/>
-                            <constraint firstItem="lWI-p6-jJf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="k0G-FK-zRI"/>
+                            <constraint firstItem="3v4-w7-b85" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ahy-7K-lyP"/>
+                            <constraint firstItem="3v4-w7-b85" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.1" id="CFK-7i-yCr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dyK-RF-9Gz"/>
                     <connections>
+                        <outlet property="durationLabel" destination="1qv-om-6JD" id="Bpl-f1-422"/>
                         <outlet property="recordButton" destination="lWI-p6-jJf" id="12N-zd-rgJ"/>
                         <outlet property="recordingLabel" destination="gk5-n0-av7" id="Lqk-km-iLx"/>
                         <outlet property="stopRecordingButton" destination="e7M-3L-nBW" id="8bJ-B8-Y1x"/>
@@ -72,7 +79,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jyT-2M-WQK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3cz-Kn-YUw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q7b-Jg-dmY">
@@ -140,6 +147,11 @@
                                                     <action selector="pauseAudio:" destination="eT9-ui-nBw" eventType="touchDown" id="AGv-cR-9ad"/>
                                                 </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00/00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihm-ss-aXE" userLabel="CurrentTimeLabel">
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZNF-eE-otj">
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm6-7l-40c" userLabel="Play Button">
@@ -187,6 +199,7 @@
                     <connections>
                         <outlet property="audioSlider" destination="oRW-J6-hue" id="xTN-5o-b5D"/>
                         <outlet property="chipmunkButton" destination="abv-nQ-W5y" id="GEK-SD-1DM"/>
+                        <outlet property="currentTimeLabel" destination="ihm-ss-aXE" id="gZF-CP-esZ"/>
                         <outlet property="echoButton" destination="YM4-6u-R0f" id="9GQ-dn-u6O"/>
                         <outlet property="pauseButton" destination="dXh-7s-RkJ" id="FXy-z2-c8Z"/>
                         <outlet property="playButton" destination="Sm6-7l-40c" id="LXJ-t4-HA9"/>
