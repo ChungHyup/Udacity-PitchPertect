@@ -22,12 +22,22 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3v4-w7-b85">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-p6-jJf">
-                                        <state key="normal" image="Record"/>
-                                        <connections>
-                                            <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sty-vL-XVq"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbM-RF-BHi">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-p6-jJf">
+                                                <state key="normal" image="Record"/>
+                                                <connections>
+                                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sty-vL-XVq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDp-6j-DJv" userLabel="Pause Button">
+                                                <state key="normal" image="Pause"/>
+                                                <connections>
+                                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89O-pV-PB1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-n0-av7">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -60,6 +70,7 @@
                     <navigationItem key="navigationItem" id="dyK-RF-9Gz"/>
                     <connections>
                         <outlet property="durationLabel" destination="1qv-om-6JD" id="Bpl-f1-422"/>
+                        <outlet property="pauseButton" destination="IDp-6j-DJv" id="Fkq-A8-wSP"/>
                         <outlet property="recordButton" destination="lWI-p6-jJf" id="12N-zd-rgJ"/>
                         <outlet property="recordingLabel" destination="gk5-n0-av7" id="Lqk-km-iLx"/>
                         <outlet property="stopRecordingButton" destination="e7M-3L-nBW" id="8bJ-B8-Y1x"/>
