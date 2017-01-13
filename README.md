@@ -16,4 +16,4 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 
 ## 스크린샷 
 왜 이미지가 안들어가지.........
-![test1](https://raw.github.com/ChungHyup/PitchPertect_ChunghyupOh/master/image/image1.png)
+![test1](/image/image1.png)
