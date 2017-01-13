@@ -14,9 +14,5 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 1. play
 1. Pause
 
-## 스크린샷
-![screenshot1](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/image/image1.png)
-![screenshot2](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image2.png)
-![screenshot3](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image3.png)
-![screenshot4](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image4.png)
-![screenshot5](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image5.png)
+## 스크린샷 
+왜 이미지가 안들어가지.........
