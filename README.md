@@ -30,15 +30,23 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에 Audio player와 같은 기능
   오디오가 재생중에도 slider를 통해 재생 위치를 변경 할 수 있지만, 사용자가 원할 경우 일시정지 버튼을 통해 오디오를 멈춘후 슬라이더를 조작 할 수 있습니다.
 
 ## 스크린샷
+**첫번째 화면**
+
 <img src="/image/image1.png" width="200"/></br>
 앱을 실행하였을 시 화면입니다. </br>
+
 <img src="/image/image2.png" width="200"/></br>
 녹음을 시작 할 시 녹음중인 audio의 길이를 표시해줍니다.</br>
 일시정지 버튼을 통해 일시정지 후 이어서 녹음할 수 있습니다. </br>
+
+**두번째 화면**
+
 <img src="/image/image3.png" width="200"/></br>
 녹을을 완료 할 경우 위와 같은 화면이 나타납니다. </br>
+
 <img src="/image/image4.png" width="200"/></br>
 위 6개의 버튼중 하나를 선택시 위와 같이 재생이 됩니다. </br>
+
 <img src="/image/image5.png" width="200"/></br>
 재생 중 일시정지 버튼을 누를 경우 위와 같이 화면이 표시됩니다.</br>
 slider, 재생, 일시정지를 통해 실행중인 오디오를 조작할 수 있습니다.</br>
