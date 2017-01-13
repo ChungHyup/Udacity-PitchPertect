@@ -15,7 +15,7 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 1. Pause
 
 ## 스크린샷
-![screenshot1](https://github.com//ChungHyup/PitchPertect_ChunghyupOh/blob/master/image/image1.png)
+![screenshot1](PitchPertect_ChunghyupOh/image/image1.png)
 ![screenshot2](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image2.png)
 ![screenshot3](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image3.png)
 ![screenshot4](https://github.com/ChungHyup/PitchPertect_ChunghyupOh/tree/master/image/image4.png)
