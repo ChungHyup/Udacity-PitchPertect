@@ -15,5 +15,7 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 1. Pause
 
 ## 스크린샷 
-왜 이미지가 안들어가지.........
+
 ![test1](/image/image1.png)
+
+<img src="/image/image1.png" alt="Drawing" style="width: 200px;"/>
