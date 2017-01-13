@@ -42,3 +42,9 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에 Audio player와 같은 기능
 <img src="/image/image5.png" width="200"/></br>
 재생 중 일시정지 버튼을 누를 경우 위와 같이 화면이 표시됩니다.</br>
 slider, 재생, 일시정지를 통해 실행중인 오디오를 조작할 수 있습니다.</br>
+
+## 시연영상
+
+시연영상은 유튜브에서 보실 수 있습니다.
+
+https://youtu.be/83br-MX5Ymg
