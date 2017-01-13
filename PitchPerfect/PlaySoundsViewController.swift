@@ -127,12 +127,11 @@ class PlaySoundsViewController: UIViewController {
         setPlayButtonHidden(true)
         audioPlayerNode.play()
     }
-    
+     
     //Timer for slider
     func setTimer(){
         sliderTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PlaySoundsViewController.updateAudioSlider), userInfo: nil, repeats:true)
         currentTimeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(PlaySoundsViewController.updateCurrentTime), userInfo: nil, repeats:true)
-        RunLoop.main.add(self.sliderTimer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     func updateCurrentTime(){
