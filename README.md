@@ -15,7 +15,4 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 1. Pause
 
 ## 스크린샷 
-
-![test1](/image/image1.png)
-
-<img src="/image/image1.png" width="50"/>
+<img src="/image/image1.png" width="200"/>
