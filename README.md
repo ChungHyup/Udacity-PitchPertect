@@ -18,4 +18,4 @@ PitchPerfect_ChunghyupOh는 기존 PitchPerfect에서 아래와 같은 기능들
 
 ![test1](/image/image1.png)
 
-<img src="/image/image1.png" alt="Drawing" style="width: 50px;"/>
+<img src="/image/image1.png" width="50"/>
