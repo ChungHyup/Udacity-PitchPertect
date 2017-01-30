@@ -49,11 +49,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }else{
             isStrated = true
-            print("record button was pressed")
             recordingLabel.text = "Recording in Progress"
             stopRecordingButton.isEnabled = true
             durationLabel.isEnabled = true
-            //recordButton.isEnabled = false
             recordButton.isHidden = true
             pauseButton.isHidden = false
             
@@ -61,7 +59,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             let recordingName = "recordedVoice.wav"
             let pathArray = [dirPath, recordingName]
             let filePath = URL(string: pathArray.joined(separator: "/"))
-            print(filePath)
             let session = AVAudioSession.sharedInstance()
             try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with:AVAudioSessionCategoryOptions.defaultToSpeaker)
             
@@ -70,13 +67,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.isMeteringEnabled = true
             audioRecorder.prepareToRecord()
             audioRecorder.record()
-            //
             durationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RecordSoundsViewController.updateDurationLaber), userInfo: nil, repeats:true)
         }
     }
     
     @IBAction func stopRecording(_ sender: AnyObject) {
-        print("stop recording button was pressed")
         recordButton.isEnabled = true
         stopRecordingButton.isEnabled = false
         recordingLabel.text = "Tap to record"

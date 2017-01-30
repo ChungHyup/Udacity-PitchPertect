@@ -11,6 +11,14 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     
+/*
+     audio player node에 대한 간략한 설명
+     audio player node는 파일의 프레임수에 따라 재생 정보를 받아 올 수 있습니다.
+     sampleTime을 통해 몇번째 프레임인지 알 수 있고, sampleRate를 통해 단위 재생 프레임수를 알 수 있습니다.
+     즉 sampleTime/sampleRate 를 한다면 현재 재생시간을 알 수 있습니다.
+     단, AVAudioEngine 을 통해 소리를 늘리거나 줄여 재생시간이 변화한 경우는 반영되지 않습니다.
+*/
+    
     var recordedAudioURL: URL!
     var audioFile:AVAudioFile!
     var audioEngine:AVAudioEngine!
@@ -117,6 +125,9 @@ class PlaySoundsViewController: UIViewController {
     
     //음악을 다시 시작 할 위치, slider, stoptimer 세팅
     @IBAction func restartAudio(_ sender: AnyObject) {
+        print(audioDuration)
+        print(audioPlayerTime.sampleRate)
+        print(audioSlider.value)
         restartPoint = AVAudioFramePosition(audioPlayerTime.sampleRate * Double(audioSlider.value))
         
         let length = Float(audioDuration!) - audioSlider.value
